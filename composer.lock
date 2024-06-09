@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61ae913c503846c4ae9fd3f899a72fb8",
+    "content-hash": "0dbad2e729d0ab911562a678e83b2473",
     "packages": [
         {
             "name": "brick/math",
@@ -5885,6 +5885,46 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "wenkang124/has-slug",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wenkang124/HasSlugPackage.git",
+                "reference": "47073cde1199761e7a967993ba5b854f0fff81d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wenkang124/HasSlugPackage/zipball/47073cde1199761e7a967993ba5b854f0fff81d5",
+                "reference": "47073cde1199761e7a967993ba5b854f0fff81d5",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wenkang124\\HasSlug\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wenkang124\\HasSlug\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "wenkang124",
+                    "email": "wenkang@etctech.com.my"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/wenkang124/HasSlugPackage/issues",
+                "source": "https://github.com/wenkang124/HasSlugPackage/tree/1.0"
+            },
+            "time": "2022-07-13T10:36:04+00:00"
         }
     ],
     "packages-dev": [
