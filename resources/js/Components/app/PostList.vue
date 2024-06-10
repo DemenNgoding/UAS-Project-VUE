@@ -10,10 +10,20 @@ const post1 = {
 
     community: null,
 
+    attachment: [
+        {
+            id: 1,
+            name: 'test.png',
+            url: 'https://picsum.photos/100',
+            mime: 'image/png'
+        }
+    ],
+
     body:
         '<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>',
 
-    created_at: '0000-1-1'
+    created_at: '0000-1-1',
+
 
 }
 </script>
