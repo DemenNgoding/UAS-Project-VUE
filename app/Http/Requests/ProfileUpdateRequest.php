@@ -17,7 +17,15 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'not_regex:/\s/i'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+        ];
+    }
+
+    // function ini digunakan untuk memberikan pesan bahwa tidak boleh ad aspasi pada username
+    public function messages() {
+        return [
+            'not_regex' => "white space doesn't allow in username",
         ];
     }
 }
