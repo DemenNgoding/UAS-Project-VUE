@@ -13,7 +13,7 @@ defineProps({
 
 <template>
     <Head title="Home"/>
-    <pre>{{posts}}</pre>
+
     <div class="grid grid-cols-12 gap-3">
         <div class="col-span-3">
             <CommunityList/>
@@ -21,7 +21,7 @@ defineProps({
 
         <div class="col-span-6">
             <CreatePost/>
-            <PostList/>
+            <PostList :posts="posts.data"/>
         </div>
 
         <div class="col-span-3">

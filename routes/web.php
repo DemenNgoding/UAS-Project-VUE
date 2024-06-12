@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityController;
 use Illuminate\Foundation\Application;
@@ -22,7 +23,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 // route untuk membuat community baru
 Route::get('/createcommunity', [CommunityController::class,'index'])->middleware(['auth','verified'])->name('createcommunity');
 
-Route::get('/createpost', [DashboardController::class,'index'])->middleware(['auth','verified'])->name('createpost');
+Route::post('/createpost', [PostController::class,'store'])->name('post.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

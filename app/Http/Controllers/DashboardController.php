@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,8 +14,8 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::query()->paginate(20);
-        return inertia::render('Dashboard', ['posts' => $posts]);
+        $posts = Post::query()->latest()->paginate(20);
+        return inertia::render('Dashboard', ['posts' => PostResource::collection($posts)]);
     }
 
     /**

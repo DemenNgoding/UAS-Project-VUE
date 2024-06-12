@@ -11,7 +11,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Sluggable\HasSlug;
 
-class User extends Authenticatable implements MustVerifyEmail {
+// class User extends Authenticatable implements MustVerifyEmail {
+class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable, HasSlug;
 
     /**

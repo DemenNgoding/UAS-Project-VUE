@@ -7,10 +7,14 @@ const model = defineModel({
 });
 
 const props = defineProps({
+    modelValue: {
+        type: String, 
+        required: true
+    },
     placeholder: String,
     autoResize: {
         type: Boolean,
-        default: false
+        default: true
     }
 });
 
@@ -32,16 +36,16 @@ function onInputChange($event){
 
     if(props.autoResize){
         input.value.style.height = 'auto';
-        input.value.style.height = textarea.scrollHeight + 'px';
+        input.value.style.height = input.value.scrollHeight + 'px';
     }
 }
 
 </script>
 
 <template>
-    <input
+    <textarea
         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-        v-model="model"
+        :value = "modelValue"
         @input="onInputChange"
         ref="input"
         :placeholder = "placeholder"
