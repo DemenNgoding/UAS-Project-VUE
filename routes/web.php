@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // route untuk membuat community baru
-Route::get('/createcommunity', [CommunityController::class,'index'])->middleware(['auth','verified'])->name('createcommunity');
+// Route::get('/createcommunity', [CommunityController::class,'index'])->middleware(['auth','verified'])->name('createcommunity');
 
 Route::post('/createpost', [PostController::class,'store'])->name('post.create');
 
@@ -30,5 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/community', [CommunityController::class,'store'])->middleware(['auth','verified'])->name('community.create');
+
 
 require __DIR__.'/auth.php';

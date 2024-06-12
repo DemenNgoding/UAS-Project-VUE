@@ -21,7 +21,7 @@ class Post extends Model
 
     public function group(): BelongsTo
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Community::class);
     }
 
     public function attachments(): HasMany
