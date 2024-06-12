@@ -1,13 +1,19 @@
 <script setup>
 import {ref} from "vue";
 
-const createPost = ref()
+const createPost = ref(false)
+
+const newPostForm = useForm({
+    body: ''
+});
+
 </script>
 
 <template>
     <div class="py-6">
-        <div @click="createPost = true" class="border rounded py-3 px-2 mb-3">
-            Create New Post
+        <InputTextarea @click="createPost = true" class="border rounded py-3 px-2 mb-3"
+         Create New Post rows = "1" v-model="newPostForm.body"/>
+            <pre>{{newPostForm.body}}</pre>
         </div>
 
         <div v-if="createPost" class="flex justify-between gap-2">
@@ -23,7 +29,6 @@ const createPost = ref()
                 Post
             </button>
         </div>
-    </div>
 </template>
 
 <style scoped>
