@@ -5,9 +5,16 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
+
+const authUser = usePage().props.auth.user;
+const keywords = ref('')
+
+function Search(){
+    router.get(route('search', keywords.value))
+}
 </script>
 
 <template>
@@ -73,6 +80,16 @@ const showingNavigationDropdown = ref(false);
                             </div>
                         </div>
 
+                        <div class="flex-1">
+                            <pre>{{keywords }}</pre>
+                            <TextInput v-model="keywords" placeholder="cari komunitas" class ="w-full"
+                                        @keyup.enter="search"/>
+
+                        </div>
+
+                        <div class="hidden sm:flex sm:items-center">
+
+                        </div>
                         <!-- Hamburger -->
                         <div class="-me-2 flex items-center sm:hidden">
                             <button

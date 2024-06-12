@@ -25,6 +25,9 @@ Route::get('/createcommunity', [CommunityController::class,'index'])->middleware
 
 Route::post('/createpost', [PostController::class,'store'])->name('post.create');
 
+Route::get('/search/{keywords}',[searchcontroller::class, 'search'])
+    ->name('search');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
