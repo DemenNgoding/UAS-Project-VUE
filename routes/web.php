@@ -20,15 +20,18 @@ Route::get('/', function () {
 // route untuk ke home page
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
+// route untuk ke profile
+Route::get('/u/{user:username}', [ProfileController::class, 'index'])->name('profile');
+
 // route untuk membuat community baru
 Route::get('/createcommunity', [CommunityController::class,'index'])->middleware(['auth','verified'])->name('createcommunity');
 
 Route::post('/createpost', [PostController::class,'store'])->name('post.create');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__.'/auth.php';

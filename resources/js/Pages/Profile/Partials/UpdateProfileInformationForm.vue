@@ -6,9 +6,9 @@ import TextInput from '@/Components/TextInput.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
 defineProps({
-    mustVerifyEmail: {
-        type: Boolean,
-    },
+    // mustVerifyEmail: {
+    //     type: Boolean,
+    // },
     status: {
         type: String,
     },
@@ -86,7 +86,6 @@ const form = useForm({
                 <p class="text-sm mt-2 text-gray-800">
                     Your email address is unverified.
                     <Link
-                        :href="route('verification.send')"
                         method="post"
                         as="button"
                         class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
