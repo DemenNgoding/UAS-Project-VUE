@@ -1,6 +1,10 @@
 <script setup>
 import PostItem from "@/Components/app/PostItem.vue";
 
+defineProps({
+    posts: Array
+})
+
 const post1 = {
     user: {
         id: 1,
@@ -30,7 +34,7 @@ const post1 = {
 
 <template>
     <div>
-        <PostItem :post="post1"/>
+        <PostItem v-for="post of posts" :key="post.id" :post="post"/>
     </div>
 
     <div></div>

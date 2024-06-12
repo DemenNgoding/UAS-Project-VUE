@@ -15,7 +15,7 @@ function checkImage(attachment) {
     <div>
         <div class="flex items-center gap-2">
             <a href="javascript:void(0)">
-                <img :src="post.user.avatar" class="w-[45px] rounded-full">
+                <img :src="post.user.avatar_url" class="w-[45px] rounded-full">
             </a>
         </div>
 
