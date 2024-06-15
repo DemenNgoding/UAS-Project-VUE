@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('group_users', function (Blueprint $table) {
+        Schema::create('community_users', function (Blueprint $table) {
             $table->id();
             $table->string('status', 25); // approved, pending
             $table->string('role', 25); // admin, user
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('token_expire_date')->nullable();
             $table->timestamp('token_used')->nullable();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('group_id')->constrained('groups');
+            $table->foreignId('community_id')->constrained('community');
             $table->foreignId('created_by')->constrained('users');
             $table->timestamp('created_at')->nullable();
         });
