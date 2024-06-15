@@ -20,6 +20,9 @@ Route::get('/', function () {
 // route untuk ke home page
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
+// route untuk melihat profile
+Route::get('/u/{user:username}', [ProfileController::class, 'index'])->name('profile');
+
 // route untuk membuat community baru
 // Route::get('/createcommunity', [CommunityController::class,'index'])->middleware(['auth','verified'])->name('createcommunity');
 
