@@ -1,15 +1,10 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-
-const model = defineModel({
-    type: String,
-    required: true,
-});
+import {onMounted, ref, watch} from 'vue';
 
 const props = defineProps({
     modelValue: {
-        type: String, 
-        required: true
+        type: String,
+        required: false,
     },
     placeholder: String,
     autoResize: {
@@ -20,7 +15,6 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-const autoResizeTextArea = ref(null)
 const input = ref(null);
 
 onMounted(() => {
@@ -29,25 +23,37 @@ onMounted(() => {
     }
 });
 
-defineExpose({ focus: () => input.value.focus() });
+watch(() => props.modelValue, () => {
+    console.log("Changed")
+    setTimeout(() => {
+        adjustHeight()
+    }, 10)
+})
 
-function onInputChange($event){
+defineExpose({focus: () => input.value.focus()});
+
+function onInputChange($event) {
     emit('update:modelValue', $event.target.value)
+}
 
-    if(props.autoResize){
+function adjustHeight() {
+    if (props.autoResize) {
         input.value.style.height = 'auto';
-        input.value.style.height = input.value.scrollHeight + 'px';
+        input.value.style.height = (input.value.scrollHeight + 1) + 'px';
     }
 }
 
+onMounted(() => {
+    adjustHeight()
+})
 </script>
 
 <template>
     <textarea
         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-        :value = "modelValue"
+        :value="modelValue"
         @input="onInputChange"
         ref="input"
-        :placeholder = "placeholder"
-    />
+        :placeholder="placeholder"
+    ></textarea>
 </template>
