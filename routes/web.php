@@ -24,10 +24,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 // Route::get('/createcommunity', [CommunityController::class,'index'])->middleware(['auth','verified'])->name('createcommunity');
 
 Route::post('/createpost', [PostController::class,'store'])->name('post.create');
-
 Route::put('/createpost/{post}', [PostController::class,'update'])->name('post.update');
-
-Route::delete('/createpost/{post}', [PostController::class,'destroy'])->name('post.delete');
+Route::delete('/createpost/{post}', [PostController::class,'destroy'])->name('post.destroy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

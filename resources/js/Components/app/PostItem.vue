@@ -3,12 +3,21 @@ import PostModal from "@/Components/app/PostModal.vue";
 import { ref } from "vue";
 import InputTextarea from "../InputTextarea.vue";
 import {useForm} from "@inertiajs/vue3";
+import { router } from '@inertiajs/vue3';
+
 const showEditModal = ref(false);
-const showDeleteModal = ref(false);
 const visibleDropdown = ref(null);
 
 const toggleDropdown = (index) => {
     visibleDropdown.value = visibleDropdown.value === index ? null : index;
+};
+
+function deletePost() {
+    if (window.confirm('Are you sure want to delete this post?')) {
+        router.delete(route('post.destroy', props.post), {
+            preserveScroll: true
+        });
+    }
 };
 
 const confirmEdit = () => {   
@@ -27,7 +36,7 @@ const confirmEdit = () => {
     });
 }
 
-defineProps({
+const props = defineProps({
     post: Object,
     index: Number
 });
@@ -58,7 +67,7 @@ function checkImage(attachment) {
                     <div class="info" @click="() => showEditModal = true">
                         <span>Edit</span>
                     </div>
-                    <div class="info" @click="() => DeletePost = true"><span>Delete</span></div>
+                    <div class="info" @click="deletePost"><span>Delete</span></div>
                     <div class="info" @click="toggleDropdown(index)"><span>Exit</span></div>
                 </div>
              </div>
@@ -99,12 +108,7 @@ function checkImage(attachment) {
             Edit Post
             <InputTextarea v-model="post.body"
                 class="mb-3 w-full">
-
             </InputTextarea>
-        </PostModal>
-
-        <PostModal :show="DeletePost" @close="showDeleteModal = false" @confirm="confirmDelete">
-            <h2>Are you sure you want to delete this post?</h2>
         </PostModal>
     </div>
 </template>
