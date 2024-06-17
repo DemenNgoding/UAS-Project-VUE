@@ -4,6 +4,7 @@ import { ref } from "vue";
 import InputTextarea from "../InputTextarea.vue";
 import {useForm} from "@inertiajs/vue3";
 import { router } from '@inertiajs/vue3';
+import axiosClient from "@/axiosClient.js";
 
 const showEditModal = ref(false);
 const visibleDropdown = ref(null);
@@ -45,6 +46,16 @@ const props = defineProps({
 function checkImage(attachment) {
     const mime = attachment.mime.split('/');
     return mime[0].toLowerCase() === 'image';
+}
+
+function sendReaction(){
+    axiosClient.post(route('post.reaction', props.post), {
+        reaction: 'like'
+    })
+        .then(({ data }) => {
+            props.post.current_user_has_reaction = data.current_user_has_reaction
+            props.post.num_of_reactions = data.num_of_reactions
+        })
 }
 </script>
 
@@ -93,9 +104,11 @@ function checkImage(attachment) {
         </div>
 
         <div>
-            <button
-                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Like
+            <button @click="sendReaction()"
+                class="rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                :class="[post.current_user_has_reaction ? 'bg-blue-600 hover:bg-indigo-500' : 'bg-indigo-600 hover:bg-indigo-500']">
+                    {{ post.current_user_has_reaction ? 'Unlike' : 'Like' }}
+                    <span> • {{ post.num_of_reactions }}</span>
             </button>
 
             <button
