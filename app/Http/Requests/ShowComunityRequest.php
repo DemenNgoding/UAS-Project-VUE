@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCommunityRequest extends FormRequest
+class ShowCommunityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,7 @@ class StoreCommunityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:225'], 
-            'auto_approval' =>['required', 'boolean'], 
-            'about' => ['nullable']
+            'user_id' => ['required']
         ];
     }
 }

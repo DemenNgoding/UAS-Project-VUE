@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->longText('body')->nullable();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('community_id')->nullable()->constrained('community');
+            $table->foreignId('community_id')->nullable()->constrained('communities');
             $table->foreignId('deleted_by')->nullable()->constrained('users');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

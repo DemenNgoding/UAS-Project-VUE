@@ -29,9 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::post('/community', [CommunityController::class, 'store'])->middleware(['auth','verified'])->name('community.create');
+    Route::post('/addcommunity', [CommunityController::class, 'store'])->name('community.create');
+    Route::post('/dashboard', [CommunityController::class, 'show'])->name('community.show');
 });
 
-Route::post('/community', [CommunityController::class,'store'])->middleware(['auth','verified'])->name('community.create');
 
 
 require __DIR__.'/auth.php';

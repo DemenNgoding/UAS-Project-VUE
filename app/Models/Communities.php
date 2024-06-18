@@ -9,11 +9,11 @@ use Spatie\Sluggable\SlugOptions;
 use Spatie\Sluggable\HasSlug;
 
 
-class Community extends Model
+class Communities extends Model
 {
     use HasFactory;
     use hasSlug;
-    use SoftDeletes;
+    // use SoftDeletes;
 
     protected $fillable = ['name', 'user_id', 'auto_approval', 'about'];
 

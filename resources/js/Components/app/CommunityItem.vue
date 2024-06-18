@@ -1,12 +1,12 @@
-<script setup>
+<!-- <script setup>
     defineProps({
         image: String,
         title: String,
         description: String
     })
-</script>
+</script> -->
 
-<template>
+<!-- <template>
     <div class="flex items-start">
         <img :src="image">
         <div>
@@ -14,8 +14,12 @@
             <div>{{ description }}</div>
         </div>
     </div>
+</template> -->
+
+<script>
+
+</script>
+
+<template>
+    
 </template>
-
-<style scoped>
-
-</style>

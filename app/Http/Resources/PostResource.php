@@ -20,8 +20,8 @@ class PostResource extends JsonResource
             'created_at' => $this->created_at->format('y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('y-m-d H:i:s'),
             'user' => new UserResource($this->user),
-            'group' => $this->group,
-            'attachments' =>$this->attachments
+            'community' => $this-> community,
+            'attachments' =>$this-> attachments
         ];
     }
 }

@@ -19,9 +19,10 @@ return new class extends Migration
             $table->timestamp('token_expire_date')->nullable();
             $table->timestamp('token_used')->nullable();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('community_id')->constrained('community');
+            $table->foreignId('community_id')->constrained('communities');
             $table->foreignId('created_by')->constrained('users');
             $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at');
         });
     }
 
