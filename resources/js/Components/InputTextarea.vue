@@ -34,6 +34,7 @@ defineExpose({focus: () => input.value.focus()});
 
 function onInputChange($event) {
     emit('update:modelValue', $event.target.value)
+    adjustHeight()
 }
 
 function adjustHeight() {
@@ -50,7 +51,8 @@ onMounted(() => {
 
 <template>
     <textarea
-        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 
+        rounded-md shadow-sm"
         :value="modelValue"
         @input="onInputChange"
         ref="input"

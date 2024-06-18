@@ -19,7 +19,13 @@ class DashboardController extends Controller
         
         $posts = Post::query()
             ->withCount('reactions')
-            ->with(['reactions' => function($query) use ($userId){
+            ->withCount('comments')
+            ->with([
+                // 'latest5Comments' => function($query)
+                // {
+                //     $query->latest()->take(5);
+                // },
+                'reactions' => function($query) use ($userId){
                 $query->where('user_id', $userId);
             }])
             ->latest()

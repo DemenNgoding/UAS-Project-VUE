@@ -31,6 +31,8 @@ Route::put('/createpost/{post}', [PostController::class,'update'])->name('post.u
 Route::delete('/createpost/{post}', [PostController::class,'destroy'])->name('post.destroy');
 Route::post('/createpost/{post}/reaction', [PostController::class, 'postReaction'])->name('post.reaction');
 
+Route::post('/createpost/{post}/comment', [PostController::class, 'createComment'])->name('post.comment.create');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
