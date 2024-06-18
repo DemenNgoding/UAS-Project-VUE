@@ -27,6 +27,9 @@ Route::get('/u/{user:username}', [ProfileController::class, 'index'])->name('pro
 // Route::get('/createcommunity', [CommunityController::class,'index'])->middleware(['auth','verified'])->name('createcommunity');
 
 Route::post('/createpost', [PostController::class,'store'])->name('post.create');
+Route::put('/createpost/{post}', [PostController::class,'update'])->name('post.update');
+Route::delete('/createpost/{post}', [PostController::class,'destroy'])->name('post.destroy');
+Route::post('/createpost/{post}/reaction', [PostController::class, 'postReaction'])->name('post.reaction');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

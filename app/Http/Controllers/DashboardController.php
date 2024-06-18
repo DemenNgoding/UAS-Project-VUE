@@ -6,6 +6,7 @@ use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,15 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::query()->latest()->paginate(20);
+        $userId = Auth::id();
+        
+        $posts = Post::query()
+            ->withCount('reactions')
+            ->with(['reactions' => function($query) use ($userId){
+                $query->where('user_id', $userId);
+            }])
+            ->latest()
+            ->paginate(20);
         return inertia::render('Dashboard', ['posts' => PostResource::collection($posts)]);
     }
 

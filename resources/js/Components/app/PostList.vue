@@ -36,8 +36,6 @@ const post1 = {
     <div>
         <PostItem v-for="post of posts" :key="post.id" :post="post"/>
     </div>
-
-    <div></div>
 </template>
 
 <style scoped>
