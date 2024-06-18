@@ -21,7 +21,9 @@ class PostResource extends JsonResource
             'updated_at' => $this->updated_at->format('y-m-d H:i:s'),
             'user' => new UserResource($this->user),
             'community' => $this-> community,
-            'attachments' =>$this-> attachments
+            'attachments' =>$this-> attachments,
+            'num_of_reactions' => $this->reactions_count,
+            'current_user_has_reaction' => $this->reactions->count() > 0
         ];
     }
 }

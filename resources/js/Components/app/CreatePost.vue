@@ -6,7 +6,7 @@ import {useForm, usePage} from "@inertiajs/vue3";
 const createPost = ref(false)
 
 const newPostForm = useForm({
-    body: ''
+    body: '',
 });
 
 function submit(){
@@ -22,7 +22,7 @@ function submit(){
 <template>
     <div class="py-6">
         <InputTextarea  @click="createPost = true" class="border rounded py-3 px-12 mb-3" 
-            placeholder="Create New Post" rows = "1" v-model="newPostForm.body"/> 
+            placeholder="Create New Post" rows = "1" v-model="newPostForm.body"/>
             <pre>{{ newPostForm.body }}</pre>
         </div>
 

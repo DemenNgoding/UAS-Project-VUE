@@ -18,7 +18,15 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::query()->latest()->paginate(20);
+        $userId = Auth::id();
+        
+        $posts = Post::query()
+            ->withCount('reactions')
+            ->with(['reactions' => function($query) use ($userId){
+                $query->where('user_id', $userId);
+            }])
+            ->latest()
+            ->paginate(20);
         // $community = Communities::query()
         // ->with('currentUserCommunity')
         // ->select(['communities.*'])
