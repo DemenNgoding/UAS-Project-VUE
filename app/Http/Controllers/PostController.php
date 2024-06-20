@@ -6,10 +6,12 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\PostReaction;
 use Illuminate\Http\Request;
 use App\Http\Enums\PostReactionEnum;
 use Illuminate\Validation\Rule;
+use App\Http\Resources\CommentResource;
 
 class PostController extends Controller
 {
@@ -68,6 +70,22 @@ class PostController extends Controller
 
         return back();
     }
+
+    public function createComment(Request $request,Post $post)
+    {
+        $data = $request->validate([
+            'comment' => ['required']
+        ]);
+
+        $comment = Comment::create([
+            'post_id' => $post->id,
+            'comment' => $data['comment'],
+            'user_id' => Auth::id()
+        ]);
+
+        return response(new CommentResource($comment) , status:201);
+    }
+
 
     public function postReaction(Request $request, Post $post)
     {
